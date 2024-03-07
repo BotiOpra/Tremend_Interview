@@ -1,6 +1,10 @@
 #!/bin/bash
 
 FILENAME="/etc/passwd"
+if ! [ -r "$FILENAME" ]; then
+  echo "You don't have read permission to /etc/passwd"
+  exit -1
+fi
 if [[ $(basename ${FILENAME}) != "passwd" ]]; then
     echo "Filename is not passwd"
 else
