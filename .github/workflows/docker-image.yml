@@ -2,9 +2,9 @@ name: Docker Image CI
 
 on:
   push:
-    branches: [ "main" ]
+    branches: [ "main", "master" ]
   pull_request:
-    branches: [ "main" ]
+    branches: [ "main", "master" ]
 
 jobs:
   build:
@@ -17,7 +17,7 @@ jobs:
         run: echo "COMMIT_HASH=$(git rev-parse --short HEAD)" >> $GITHUB_ENV
 
       - name: Build the Docker image
-        run: docker build 2-automation --file 2-automation/Dockerfile --tag botondopra22/java_app:${{ env.COMMIT_HASH }} --tag botondopra22/java_app:latest
+        run: docker build 2-simpleapp --file 2-simpleapp/Dockerfile --tag botondopra22/java_app:${{ env.COMMIT_HASH }} --tag botondopra22/java_app:latest
         
       - name: Push Docker image to Docker registry
         run: |
